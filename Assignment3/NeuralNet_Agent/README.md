@@ -139,7 +139,7 @@ Spell checking was implemented through the Autocorrect package. The implementati
 ![Autocorrect](images/SpellCheck_part2.PNG)
 
 ### Wikipedia API
-The Wikipedia API enable the user to search keywords related to the conversation topic.
+The Wikipedia API enable the user to search keywords related to the conversation topic. The result of the search is presented as the bot's response.
 
 ![Wikipedia Search](images/WikipediaSearchResult.png)
 
