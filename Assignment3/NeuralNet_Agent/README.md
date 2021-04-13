@@ -66,6 +66,10 @@ The ChatApplication class is located in the app.py file. This class has the foll
   * ```_setup_main_window(): A function of the window object that provides a title, window size and other features.```
   * ```_on_enter_pressed(): calls _insert_message function whenever user presses the enter button after typing a message.```
   * ```_insert_message(): takes a message and a sender as a parameter and inputs both message and response into the main message box. Note: calls on methods within agent.py as well.```
+  * ```_on_enter_search_wiki(): calls _insert_wiki_keyword function whenever user presses the search button after typing a message.```
+  * ```_insert_wiki_keyword(): takes a message and a sender as a parameter and returns the searched output as the bot reponse.```
+  * ```_on_enter_find_tweet(): calls _insert_twitter_keyword function whenever user presses the tweets button after typing a message.```
+  * ```_insert_twitter_keyword(): takes a message and a sender as a parameter and returns the searched output as the bot reponse.```
 
 
 ## Compile training data for the chatbot
@@ -87,6 +91,8 @@ The ChatApplication class is located in the app.py file. This class has the foll
 * **chatbotmodel.h5** *Trains the tags to have higher probabilities for certain words that consistently appear in its patterns and stores this information as a hierarchical data structure*
 * **playgrounds.py** Tests how POS tagging and synonyms can be used in conjunction
 * **GUI.py** Compiles the GUI for the chat bot
+* **wikipedia_api.py** 
+* **twitter_api.py**
 ##  Imports 
 * Random
 * JSON 
@@ -99,6 +105,8 @@ The ChatApplication class is located in the app.py file. This class has the foll
 * spacy
 * autocorrect
 * unittest
+* wikipedia
+* tweepy
 
 ## List of features
 Each features that will be mentioned below will include a rationale as to why it has been chosen and a snippet of the feature in action.
@@ -129,3 +137,11 @@ Spell checking was implemented through the Autocorrect package. The implementati
 ![Autocorrect](images/SpellCheck_part1.PNG)
 
 ![Autocorrect](images/SpellCheck_part2.PNG)
+
+### Wikipedia API
+The Wikipedia API enable the user to search keywords related to the conversation topic.
+
+![Wikipedia Search](images/WikipediaSearchResult.png)
+
+### Twitter API
+The Twitter API enables the user to pull recent tweets about a related keyword.

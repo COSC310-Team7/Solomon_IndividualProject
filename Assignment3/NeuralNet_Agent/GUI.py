@@ -1,6 +1,6 @@
 # Import tkinter and agent.py
 from tkinter import *
-from Projects.Assignment3.NeuralNet_Agent.agent import *
+from agent import *
 from wikipedia_api import *
 from twitter_api import *
 
@@ -46,7 +46,8 @@ class ChatApplication:
         self.text_widget.configure(state=NORMAL)
 
         intro_msg = "Welcome, we are here to help you with your computer issues. Please type \"Hello\" or the type " \
-                    "of issue you are having, to begin.\n\n"
+                    "of issue you are having, to begin. Please the keyword you want search and use the 'Search' button." \
+                    " Please the type keyword and use the 'Tweet' button to print latest tweet on keyword. \n\n"
         self.text_widget.insert(END, intro_msg)
         self.text_widget.configure(cursor="arrow", state=DISABLED)
 
@@ -71,9 +72,14 @@ class ChatApplication:
         send_button.place(relx=0.77, rely=0.008, relheight=0.06, relwidth=0.22)
 
         # search  button
-        search_button = Button(bottom_label, text="Search Wikipedia", font=FONT_BOLD, width=10, bg=BG_GRAY,
-                                command=lambda: self._on_enter_search(None))
-        search_button.place(relx=0.77, rely=0.08, relheight=0.03, relwidth=0.22)
+        search_button = Button(bottom_label, text="Search", font=FONT_BOLD, width=10, bg=BG_GRAY,
+                                command=lambda: self._on_enter_search_wiki(None))
+        search_button.place(relx=0.77, rely=0.08, relheight=0.03, relwidth=0.11)
+
+        # search  button
+        search_button = Button(bottom_label, text="Tweets", font=FONT_BOLD, width=10, bg=BG_GRAY,
+                               command=lambda: self._on_enter_search_wiki(None))
+        search_button.place(relx=0.88, rely=0.08, relheight=0.03, relwidth=0.11)
 
     # on enter pressed function defined
     def _on_enter_pressed(self, event):
@@ -98,13 +104,12 @@ class ChatApplication:
 
         self.text_widget.see(END)
 
-    # on click search button
-    def _on_enter_search(self, event):
+    # on enter search wikipedia
+    def _on_enter_search_wiki(self, event):
         msg = self.msg_entry.get()
-        self._insert_search(msg, "You")
+        self._insert_wiki_keyword(msg, "You")
 
-    # Google places API search through places.py
-    def _insert_search(self, msg, sender):
+    def _insert_wiki_keyword(self, msg, sender):
         if not msg:
             return
         self.msg_entry.delete(0, END)
@@ -114,6 +119,28 @@ class ChatApplication:
         self.text_widget.configure(state=DISABLED)
 
         botResponse = search_wiki(msg)
+        msg2 = f"{bot_name}: {botResponse}\n\n"
+        self.text_widget.configure(state=NORMAL)
+        self.text_widget.insert(END, msg2)
+        self.text_widget.configure(state=DISABLED)
+
+        self.text_widget.see(END)
+
+    # on enter find tweet
+    def _on_enter_find_tweet(self, event):
+        msg = self.msg_entry.get()
+        self._insert_twitter_keyword(msg, "You")
+
+    def _insert_twitter_keyword(self, msg, sender):
+        if not msg:
+            return
+        self.msg_entry.delete(0, END)
+        msg1 = f"{sender}: {msg}\n\n"
+        self.text_widget.configure(state=NORMAL)
+        self.text_widget.insert(END, msg1)
+        self.text_widget.configure(state=DISABLED)
+
+        botResponse = get_tweets(msg)
         msg2 = f"{bot_name}: {botResponse}\n\n"
         self.text_widget.configure(state=NORMAL)
         self.text_widget.insert(END, msg2)
