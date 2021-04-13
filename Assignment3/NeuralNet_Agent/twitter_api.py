@@ -9,10 +9,8 @@ import webbrowser
 
 def get_tweets(text):
 
-    fake = 'dummy result'
-
-    consumer_key = 'add yours'
-    consumer_secret_key = 'add yours'
+    consumer_key = 'enter your consumer key here'
+    consumer_secret_key = 'enter your consumer secret key here'
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret_key)
 
