@@ -78,7 +78,7 @@ class ChatApplication:
 
         # search  button
         search_button = Button(bottom_label, text="Tweets", font=FONT_BOLD, width=10, bg=BG_GRAY,
-                               command=lambda: self._on_enter_search_wiki(None))
+                               command=lambda: self._on_enter_find_tweet(None))
         search_button.place(relx=0.88, rely=0.08, relheight=0.03, relwidth=0.11)
 
     # on enter pressed function defined

@@ -3,16 +3,17 @@
 # Tweepy module
 import tweepy
 
-# Webbrowser module
-import webbrowser
-
 
 def get_tweets(text):
 
-    consumer_key = 'enter your consumer key here'
-    consumer_secret_key = 'enter your consumer secret key here'
+    consumer_key = 'Add yours'
+    consumer_secret_key = 'Add yours'
+
+    access_token = 'Add yours'
+    access_token_secret = 'Add yours'
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret_key)
+    auth.set_access_token(access_token, access_token_secret)
 
     api = tweepy.API(auth, wait_on_rate_limit=True)
 

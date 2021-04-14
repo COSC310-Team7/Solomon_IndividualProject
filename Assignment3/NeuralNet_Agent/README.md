@@ -145,3 +145,5 @@ The Wikipedia API enable the user to search keywords related to the conversation
 
 ### Twitter API
 The Twitter API enables the user to pull recent tweets about a related keyword.
+
+![Twitter API](images/TwitterResult.png)
